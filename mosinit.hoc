@@ -1,0 +1,19 @@
+//moddir S1 
+// S2 SD SDprox1 SDprox2
+load_file("nrngui.hoc")
+print "Auto-launch demo for S1"
+
+// xpanel("Guet-McCreight et al 2016 simulation demo")
+//   xbutton("S1","run_folder(\"S1\")")
+//  xbutton("S2","run_folder(\"S2\")")
+//  xbutton("SD","run_folder(\"SD\")")
+//  xbutton("SDprox1","run_folder(\"SDprox1\")")
+//  xbutton("SDprox2","run_folder(\"SDprox2\")")
+//xpanel()
+
+proc run_folder() { // $s1 holds folder name
+  chdir($s1)
+  xopen("init.hoc")
+  chdir("..")
+}
+run_folder("S1")
