@@ -88,8 +88,13 @@ NET_RECEIVE (w) {
 }
 
 VERBATIM
+#ifndef NRN_VERSION_GTEQ_8_2_0
 double nrn_random_pick(void* r);
 void* nrn_random_arg(int argpos);
+#define RANDCAST
+#else
+#define RANDCAST (Rand*)
+#endif
 ENDVERBATIM
 
 : FUNCTION erand() {
@@ -104,7 +109,7 @@ VERBATIM
          */
 //            _lerand = nrn_random_pick(_p_donotuse);
 //            _lurand = nrn_random_pick(_p_donotuse);
-            _lgrand = nrn_random_pick(_p_donotuse);
+            _lgrand = nrn_random_pick(RANDCAST _p_donotuse);
     }else{
         /* only can be used in main thread */
         if (_nt != nrn_threads) {
